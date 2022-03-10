@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:09:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/10 03:40:00 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/10 03:49:23 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ size_t	ft_nsignchk(const char *fmt);
 size_t	ft_signchk(const char *fmt, va_list ap);
 size_t	ft_putchari(char c);
 size_t	ft_putstri(char *str);
+size_t	ft_putcharul(char c, int shift);
 size_t	ft_putnbr(ssize_t n, ssize_t len);
 size_t	ft_putaddr_base(void *n, int base);
-size_t	ft_putnbru_base(unsigned long long num, int b);
+size_t	ft_putnbru_base(unsigned long long num, int b, int shift);
 char	*ft_basenumber(int base);
 
 int	ft_printf(const char *fmt, ...)
@@ -66,6 +67,14 @@ void	ft_putnstr(char *str, size_t len)
 
 size_t	ft_putchari(char c)
 {
+	write(1, &c, 1);
+	return (1);
+}
+
+size_t	ft_putcharul(char c, int shift)
+{
+	if (shift && (c >= 'a' && c <= 'z'))
+		c -= 32;
 	write(1, &c, 1);
 	return (1);
 }
@@ -118,9 +127,11 @@ size_t	ft_signchk(const char *fmt, va_list ap)
 	if (*ptr == 'p')
 		len += ft_putaddr_base(va_arg(ap, void *), 16);
 	if (*ptr == 'u')
-		len += ft_putnbru_base(va_arg(ap, unsigned int), 10);
+		len += ft_putnbru_base(va_arg(ap, unsigned int), 10, 0);
 	if (*ptr == 'x')
-		len += ft_putnbru_base(va_arg(ap, unsigned long), 16);
+		len += ft_putnbru_base(va_arg(ap, unsigned long), 16, 0);
+	if (*ptr == 'X')
+		len += ft_putnbru_base(va_arg(ap, unsigned long), 16, 1);
 	return (len);
 }
 
@@ -160,11 +171,11 @@ size_t	ft_putaddr_base(void *n, int base)
 
 	num = (unsigned long long) n;
 	len = ft_putstri("0x");
-	len += ft_putnbru_base(num, base);
+	len += ft_putnbru_base(num, base, 0);
 	return (len);
 }
 
-size_t	ft_putnbru_base(unsigned long long num, int b)
+size_t	ft_putnbru_base(unsigned long long num, int b, int shift)
 {
 	char	*base;
 	size_t	len;
@@ -179,13 +190,13 @@ size_t	ft_putnbru_base(unsigned long long num, int b)
 	}
 	if (b && num < (unsigned long long) b)
 	{
-		ft_putchar(base[num]);
+		ft_putcharul(base[num], shift);
 		len++;
 	}
 	else if (b && num >= (unsigned long long) b)
 	{
-		ft_putnbru_base((num / b), b);
-		ft_putchar(base[num % b]);
+		ft_putnbru_base((num / b), b, shift);
+		ft_putcharul(base[num % b], shift);
 		len++;
 	}
 	free(base);

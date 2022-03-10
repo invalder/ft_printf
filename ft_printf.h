@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/10 02:24:47 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/10 03:49:57 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ size_t	ft_nsignchk(const char *fmt);
 size_t	ft_signchk(const char *fmt, va_list ap);
 size_t	ft_putchari(char c);
 size_t	ft_putstri(char *str);
+size_t	ft_putcharul(char c, int shift);
 size_t	ft_putnbr(ssize_t n, ssize_t len);
 size_t	ft_putaddr_base(void *n, int base);
-size_t	ft_putnbru_base(unsigned long long num, int b);
+size_t	ft_putnbru_base(unsigned long long num, int b, int shift);
 char	*ft_basenumber(int base);
 
 #endif
