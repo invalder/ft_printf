@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/09 16:03:36 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/11 11:39:46 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,10 @@ re:	fclean all
 
 test:
 	$(CC) $(CFLAGS) main.c libftprintf.a -o ft_printf_test
+	./ft_printf_test
+
+test_ns:
+	$(CC) main.c libftprintf.a -o ft_printf_test
 	./ft_printf_test
 
 .PHONY:	all clean fclean re

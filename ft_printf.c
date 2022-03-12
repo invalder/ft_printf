@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:09:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/10 03:49:23 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:58:06 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ size_t	ft_putstri(char *str);
 size_t	ft_putcharul(char c, int shift);
 size_t	ft_putnbr(ssize_t n, ssize_t len);
 size_t	ft_putaddr_base(void *n, int base);
-size_t	ft_putnbru_base(unsigned long long num, int b, int shift);
+size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len);
 char	*ft_basenumber(int base);
 
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
-	int		ret_len;
 	int		cur;
 	int		len;
+	int		len_res;
 	char	*ptr;
 
-	ret_len = 0;
 	cur = 0;
+	len_res = 0;
 	va_start(ap, fmt);
 	ptr = (char *)fmt;
 	while(*(ptr + cur))
@@ -44,15 +44,17 @@ int	ft_printf(const char *fmt, ...)
 		{
 			ft_putnstr(ptr + cur, len);
 			cur += len;
+			len_res += len;
 		}
 		else
 		{
 			len = ft_signchk(ptr + cur, ap);
 			cur = cur + 2;
+			len_res += len;
 		}
 	}
 	va_end(ap);
-	return (cur + 1);
+	return (len_res);
 }
 
 void	ft_putchar(char c)
@@ -84,11 +86,17 @@ size_t	ft_putstri(char *str)
 	size_t	len;
 
 	len = 0;
-	while (*(str + len))
+	if(str)
 	{
-		ft_putchar(*(str + len));
-		len++;
+		while (*(str + len))
+		{
+			ft_putchar(*(str + len));
+			len++;
+
+		}
 	}
+	else
+		len = ft_putstri("(null)");
 	return (len);
 }
 
@@ -120,6 +128,8 @@ size_t	ft_signchk(const char *fmt, va_list ap)
 		len += ft_putchari('%');
 	if (*ptr == ' ')
 		len += ft_putchari(' ');
+	if (*ptr == 'c')
+		len += ft_putchari(va_arg(ap, int));
 	if (*ptr == 's')
 		len += ft_putstri(va_arg(ap, char *));
 	if (*ptr == 'd' || *ptr == 'i')
@@ -127,18 +137,20 @@ size_t	ft_signchk(const char *fmt, va_list ap)
 	if (*ptr == 'p')
 		len += ft_putaddr_base(va_arg(ap, void *), 16);
 	if (*ptr == 'u')
-		len += ft_putnbru_base(va_arg(ap, unsigned int), 10, 0);
+		len += ft_putnbru_base(va_arg(ap, unsigned int), 10, 0, 0);
+	if (*ptr == 'o')
+		len += ft_putnbru_base(va_arg(ap, unsigned int), 8, 0, 0);
 	if (*ptr == 'x')
-		len += ft_putnbru_base(va_arg(ap, unsigned long), 16, 0);
+		len += ft_putnbru_base(va_arg(ap, unsigned int), 16, 0, 0);
 	if (*ptr == 'X')
-		len += ft_putnbru_base(va_arg(ap, unsigned long), 16, 1);
+		len += ft_putnbru_base(va_arg(ap, unsigned int), 16, 1, 0);
 	return (len);
 }
 
 size_t	ft_putnbr(ssize_t n, ssize_t len)
 {
-	int	neg;
-	int	num;
+	ssize_t	neg;
+	ssize_t	num;
 
 	neg = 0;
 	num = n;
@@ -146,6 +158,7 @@ size_t	ft_putnbr(ssize_t n, ssize_t len)
 	{
 		num *= -1;
 		neg = 1;
+		len++;
 	}
 	if (neg)
 		ft_putchar('-');
@@ -156,38 +169,35 @@ size_t	ft_putnbr(ssize_t n, ssize_t len)
 	}
 	else
 	{
-		ft_putnbr((num - (num % 10)) / 10, len);
-		ft_putchar((num % 10) + '0');
-		len++;
+		len = ft_putnbr((num - (num % 10)) / 10, len);
+		len = ft_putnbr((num % 10), len);
 	}
 	return (len);
 }
 
 size_t	ft_putaddr_base(void *n, int base)
 {
-	printf("%llu\n", (unsigned long long) n);
 	unsigned long long	num;
 	size_t				len;
 
 	num = (unsigned long long) n;
-	len = ft_putstri("0x");
-	len += ft_putnbru_base(num, base, 0);
+	if (num)
+	{
+		len = ft_putstri("0x");
+		len += ft_putnbru_base(num, base, 0, 0);
+	}
+	else
+	{
+		len = ft_putstri("(nil)");
+	}
 	return (len);
 }
 
-size_t	ft_putnbru_base(unsigned long long num, int b, int shift)
+size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len)
 {
 	char	*base;
-	size_t	len;
 
-	len = 0;
 	base = ft_basenumber(b);
-	if (num < 0)
-	{
-		ft_putchar('-');
-		num *= -1;
-		len++;
-	}
 	if (b && num < (unsigned long long) b)
 	{
 		ft_putcharul(base[num], shift);
@@ -195,9 +205,8 @@ size_t	ft_putnbru_base(unsigned long long num, int b, int shift)
 	}
 	else if (b && num >= (unsigned long long) b)
 	{
-		ft_putnbru_base((num / b), b, shift);
-		ft_putcharul(base[num % b], shift);
-		len++;
+		len = ft_putnbru_base((num / b), b, shift, len);
+		len = ft_putnbru_base(num % b, b, shift, len);
 	}
 	free(base);
 	return (len);
@@ -211,12 +220,12 @@ char	*ft_basenumber(int base)
 	if (!bres)
 		return (NULL);
 	if (base == 2)
-		strlcpy(bres, "01", 3);
+		strncpy(bres, "01", 3);
 	else if (base == 10)
-		strlcpy(bres, "0123456789", 11);
+		strncpy(bres, "0123456789", 11);
 	else if (base == 16)
-		strlcpy(bres, "0123456789abcdef", 17);
+		strncpy(bres, "0123456789abcdef", 17);
 	else
-		strlcpy(bres, "", 1);
+		strncpy(bres, "", 2);
 	return (bres);
 }
