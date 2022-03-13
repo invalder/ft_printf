@@ -1,50 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_util_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/13 17:56:50 by nnakarac         ###   ########.fr       */
+/*   Created: 2022/03/13 11:44:12 by nnakarac          #+#    #+#             */
+/*   Updated: 2022/03/13 11:46:00 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-%[flags][width][.precision]specifier
-*/
-
-int	ft_printf(const char *fmt, ...)
+void	ft_putchar(char c)
 {
-	va_list	ap;
-	char	*ptr;
-	char	*buff;
-
-	va_start(ap, fmt);
-	ptr = (char *)fmt;
-	buff = NULL;
-	while (*ptr)
-	{
-		if (*ptr == '%')
-		{
-
-		}
-
-	}
-	va_end(ap);
-	return (0);
+	write(1, &c, 1);
 }
 
-char	*ft_flagchk(const char *fmt, char *buff, va_list ap)
+size_t	ft_putchari(char c)
 {
-	char	*ptr;
+	write(1, &c, 1);
+	return (1);
+}
 
-	ptr = (char *)fmt;
-	if (*ptr != '%')
-		return (buff);
-	ptr++;
-	if (*ptr == '%')
-		return (ft_buff_join(buff, "%"))
+size_t	ft_putcharul(char c, int shift)
+{
+	if (shift && (c >= 'a' && c <= 'z'))
+		c -= 32;
+	write(1, &c, 1);
+	return (1);
 }

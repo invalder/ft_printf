@@ -3,14 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/11 11:39:46 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/13 11:54:06 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	ft_printf.c
+SRCS	=	ft_printf.c \
+			ft_util_char.c \
+			ft_util_str.c \
+			ft_util_putnbr.c
 
 OBJS	=	$(SRCS:.c=.o)
 
