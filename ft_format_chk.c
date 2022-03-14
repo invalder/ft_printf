@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_format_chk.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/14 17:28:08 by nnakarac         ###   ########.fr       */
+/*   Created: 2022/03/14 16:59:27 by nnakarac          #+#    #+#             */
+/*   Updated: 2022/03/14 17:30:39 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "ft_printf.h"
 
-int	main(void)
+size_t	ft_flgchk(char *ptr)
 {
-	int	p_len;
-	int	ft_len;
-
-	p_len = printf("%-10.3d", 42);
-	ft_len = printf("%.2d", 42);
-	printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
+	if (*ptr == '-' || *ptr == '+' || *ptr == ' ' || *ptr == '#' || *ptr == '0')
+		return (1);
 	return (0);
 }
+
+size_t	ft_widthchk(char *ptr)
+{
+	if (*ptr == '*')
+		return (1);
+	if (ft_isdigit)
+}
+
