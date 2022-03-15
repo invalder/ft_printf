@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:50:42 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/13 13:08:16 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/15 00:12:02 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,18 @@ size_t	ft_putstri(char *str)
 	}
 	else
 		len = ft_putstri("(null)");
+	return (len);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t	len;
+
+	len = 0;
+	if (str)
+	{
+		while (*str++)
+			len++;
+	}
 	return (len);
 }

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_util_mem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/15 03:04:33 by nnakarac         ###   ########.fr       */
+/*   Created: 2022/03/15 00:13:19 by nnakarac          #+#    #+#             */
+/*   Updated: 2022/03/15 00:16:22 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
-int	main(void)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	p_len;
-	int	ft_len;
+	unsigned char		*ptr_d;
+	const unsigned char	*ptr_s;
 
-	p_len = printf("%-10c\n", 'c');
-	// ft_len = ft_printf("%.2#d123456", 42);
-	ft_len = ft_printf("Hello World!");
-	printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
-	return (0);
+	ptr_d = dest;
+	ptr_s = src;
+	if (dest == NULL || src == NULL)
+	{
+		if (dest == NULL)
+			return (NULL);
+		return (dest);
+	}
+	if (n)
+		while (n-- > 0)
+			*ptr_d++ = *ptr_s++;
+	return (dest);
 }

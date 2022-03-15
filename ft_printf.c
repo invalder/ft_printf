@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/14 17:29:14 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/15 01:28:11 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,31 @@ int	ft_printf(const char *fmt, ...)
 	buff = NULL;
 	while (*ptr)
 	{
+		printf("debug: %c\n", *ptr);
 		if (*ptr == '%')
 		{
 			cur = ft_formatchk(ptr);
+			if (cur >= 0)
+			// buff = ft_appendfmt(ptr, cur, ap);
+			cur++;
 		}
-
+		else
+		{
+			buff = ft_appendchr(buff, ptr);
+			cur = 1;
+		}
+		ptr += cur;
+	}
+	if (buff)
+	{
+		ft_putstri(buff);
+		free(buff);
 	}
 	va_end(ap);
 	return (0);
 }
 
-size_t	ft_formatchk(char *ptr)
+ssize_t	ft_formatchk(char *ptr)
 {
 	size_t	len;
 
@@ -65,15 +79,51 @@ size_t	ft_formatchk(char *ptr)
 	ptr++;
 	if (*ptr == '%')
 		return (2);
-	while(!ft_isspecifier(ptr))
+	while(!ft_specchk(ptr))
 	{
 		len += ft_flgchk(ptr);
 		len += ft_widthchk(ptr);
 		len += ft_precisechk(ptr);
-		len += ft_specchk(ptr);
 		ptr += len;
 	}
+	if (ft_specchk(ptr))
+		len += 1;
+	else
+		len = -1;
 	return (len);
+}
+
+char	*ft_appendchr(char *buff, char *ptr)
+{
+	size_t buff_len;
+	char	*new_buff;
+
+	new_buff = NULL;
+	if (buff)
+		buff_len = ft_strlen(buff);
+	else
+		buff_len = 0;
+	new_buff = malloc(sizeof(char) * buff_len + 2);
+	if (!new_buff)
+		return (NULL);
+	ft_memcpy(new_buff, buff, buff_len);
+	free(buff);
+	ft_memcpy(new_buff + buff_len, ptr, 1);
+	*(new_buff + buff_len + 2) = 0;
+	return (new_buff);
+}
+
+char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
+{
+	char	*new_buff;
+	char	*pnt_buff;
+
+	if (*ptr == '%')
+		return (ft_appendchr(buff, ptr));
+	while (*ptr)
+	{
+
+	}
 }
 
 // char	*ft_flagchk(const char *fmt, char *buff, va_list ap)

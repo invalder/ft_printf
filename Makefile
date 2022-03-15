@@ -6,14 +6,16 @@
 #    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/13 11:54:06 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/15 00:19:07 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_printf.c \
 			ft_util_char.c \
 			ft_util_str.c \
-			ft_util_putnbr.c
+			ft_util_putnbr.c \
+			ft_format_chk.c \
+			ft_util_mem.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -31,7 +33,7 @@ all:	$(NAME)
 	@$(CC) $(CFLAGS) -c $< -o $@  $(CPPFLAGS)
 
 $(NAME):	$(OBJS)
-	ar -rcsT $(NAME) $(OBJS)
+	ar -rcs $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
