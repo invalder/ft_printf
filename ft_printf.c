@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/15 14:04:09 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/16 01:49:51 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,31 +103,85 @@ char	*ft_appendchr(char *buff, char *ptr)
 		buff_len = ft_strlen(buff);
 	else
 		buff_len = 0;
-	new_buff = malloc(sizeof(char) * buff_len + 2);
+	new_buff = malloc(sizeof(char) * (buff_len + 2));
 	if (!new_buff)
 		return (NULL);
-	ft_memcpy(new_buff, buff, buff_len);
-	free(buff);
+	if (buff)
+	{
+		ft_memcpy(new_buff, buff, buff_len);
+		free(buff);
+	}
 	ft_memcpy(new_buff + buff_len, ptr, 1);
-	*(new_buff + buff_len + 2) = 0;
+	*(new_buff + buff_len + 1) = 0;
 	return (new_buff);
 }
 
-char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
+char	*ft_append2str(char *buff, char c)
 {
+	size_t buff_len;
 	char	*new_buff;
-	char	*pnt_buff;
-	static t_prefix	*t_pre;
 
-	if (*ptr == '%')
-		return (ft_appendchr(buff, ptr));
-	while (*ptr)
+	new_buff = NULL;
+	if (buff)
+		buff_len = ft_strlen(buff);
+	else
+		buff_len = 0;
+	new_buff = malloc(sizeof(char) * (buff_len + 2));
+	if (!new_buff)
+		return (NULL);
+	if (buff)
 	{
-
+		ft_memcpy(new_buff, buff, buff_len);
+		free(buff);
 	}
-	// if (ft_specchk(ptr + cur))
-	// 	pnt_buff = ft_printf_spec(ptr + cur, ap);
+	*(new_buff + buff_len) = c;
+	*(new_buff + buff_len + 1) = 0;
+	return (new_buff);
 }
+
+char	*ft_append2str_ul(char *buff, char c, int shift)
+{
+	size_t buff_len;
+	char	*new_buff;
+
+	if (shift)
+	{
+		if (c >= 'a' && c <= 'z')
+			c -= 32;
+	}
+	new_buff = NULL;
+	if (buff)
+		buff_len = ft_strlen(buff);
+	else
+		buff_len = 0;
+	new_buff = malloc(sizeof(char) * (buff_len + 2));
+	if (!new_buff)
+		return (NULL);
+	if (buff)
+	{
+		ft_memcpy(new_buff, buff, buff_len);
+		free(buff);
+	}
+	*(new_buff + buff_len) = c;
+	*(new_buff + buff_len + 1) = 0;
+	return (new_buff);
+}
+// char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
+// {
+// 	char	*new_buff;
+// 	char	*pnt_buff;
+// 	static t_prefix	*t_pre;
+
+// 	ft_freeprefix(t_pre);
+// 	if (*ptr == '%')
+// 		return (ft_appendchr(buff, ptr));
+// 	while (*ptr)
+// 	{
+// 		// t_pre->is_left =
+// 	}
+// 	// if (ft_specchk(ptr + cur))
+// 	// 	pnt_buff = ft_printf_spec(ptr + cur, ap);
+// }
 
 char	*ft_printf_spec(char *ptr, va_list ap)
 {
@@ -139,7 +193,12 @@ char	*ft_printf_spec(char *ptr, va_list ap)
 		return (ft_print_d(ap));
 	if (*ptr == 'p')
 		return (ft_print_addr(ap));
-
+	if (*ptr == 'u')
+		return (ft_print_u(ap));
+	if (*ptr == 'x')
+		return (ft_print_x(ap));
+	if (*ptr == 'X')
+		return (ft_print_X(ap));
 }
 
 // char	*ft_flagchk(const char *fmt, char *buff, va_list ap)

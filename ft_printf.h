@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/15 13:57:18 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/16 01:21:31 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,18 @@ size_t	ft_isdigit(char c);
 size_t	ft_nbrcnt(char *ptr);
 size_t	ft_specchk(char *ptr);
 char	*ft_appendchr(char *buff, char *ptr);
+char	*ft_append2str(char *buff, char c);
 size_t	ft_strlen(char *str);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
+char	*ft_print_nbr(ssize_t n, char *buff);
+char	*ft_append2str_ul(char *buff, char c, int shift);
+char	*ft_print_addr(va_list ap);
+char	*ft_print_nbru_b(unsigned long long num, char *buff, int b, int shift);
+char	*ft_basenumber(int base);
+
 typedef struct s_prefix
 {
-	char	*prefix;
 	int		is_left;
 	int		is_sign;
 	int		is_space;
