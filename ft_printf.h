@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/15 00:18:10 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:57:18 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,18 @@ size_t	ft_specchk(char *ptr);
 char	*ft_appendchr(char *buff, char *ptr);
 size_t	ft_strlen(char *str);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+
+typedef struct s_prefix
+{
+	char	*prefix;
+	int		is_left;
+	int		is_sign;
+	int		is_space;
+	int		is_preceed;
+	int		is_iszero;
+	int		width;
+	int		precision;
+}	t_prefix;
+
 
 #endif

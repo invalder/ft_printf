@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/15 01:28:11 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:04:09 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
 {
 	char	*new_buff;
 	char	*pnt_buff;
+	static t_prefix	*t_pre;
 
 	if (*ptr == '%')
 		return (ft_appendchr(buff, ptr));
@@ -124,6 +125,21 @@ char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
 	{
 
 	}
+	// if (ft_specchk(ptr + cur))
+	// 	pnt_buff = ft_printf_spec(ptr + cur, ap);
+}
+
+char	*ft_printf_spec(char *ptr, va_list ap)
+{
+	if (*ptr == 'c')
+		return (ft_print_c(ap));
+	if (*ptr == 's')
+		return (ft_print_s(ap));
+	if (*ptr == 'd' || *ptr == 'i')
+		return (ft_print_d(ap));
+	if (*ptr == 'p')
+		return (ft_print_addr(ap));
+
 }
 
 // char	*ft_flagchk(const char *fmt, char *buff, va_list ap)
