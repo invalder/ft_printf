@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/16 03:08:56 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:23:52 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_print_nbr(ssize_t n, char *buff)
 	return (buff);
 }
 
-char	*ft_print_addr(va_list ap)
+char	*ft_print_p(va_list ap)
 {
 	char	*pnt_buff;
 
@@ -120,10 +120,7 @@ char	*ft_print_u(va_list ap)
 	char	*pnt_buff;
 
 	pnt_buff = NULL;
-	if (pnt_buff)
-		return (NULL);
-	ft_memcpy(pnt_buff, "0x", 3);
-	pnt_buff = ft_print_nbru_b((unsigned long long)va_arg(ap, void *), pnt_buff, 16, 0);
+	pnt_buff = ft_print_nbru_b((unsigned long long)va_arg(ap, void *), pnt_buff, 10, 0);
 	return (pnt_buff);
 }
 
@@ -132,9 +129,16 @@ char	*ft_print_x(va_list ap, int is_shift, int is_sharp)
 	char	*pnt_buff;
 
 	pnt_buff = NULL;
-	if (pnt_buff)
-		return (NULL);
-	ft_memcpy(pnt_buff, "0x", 3);
+	if (is_sharp)
+	{
+		pnt_buff = malloc(sizeof(char) * 3);
+		if (pnt_buff)
+			return (NULL);
+		if (is_shift)
+			ft_memcpy(pnt_buff, "0x", 3);
+		else
+			ft_memcpy(pnt_buff, "0X", 3);
+	}
 	pnt_buff = ft_print_nbru_b((unsigned long long)va_arg(ap, void *), pnt_buff, 16, is_shift);
 	return (pnt_buff);
 }

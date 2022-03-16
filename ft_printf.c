@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/16 01:49:51 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:51:52 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ int	ft_printf(const char *fmt, ...)
 	va_list	ap;
 	char	*ptr;
 	char	*buff;
-	size_t	cur;
+	int	cur;
 
 	va_start(ap, fmt);
 	ptr = (char *)fmt;
 	buff = NULL;
 	while (*ptr)
 	{
-		printf("debug: %c\n", *ptr);
+		// printf("debug: %c\n", *ptr);
 		if (*ptr == '%')
 		{
 			cur = ft_formatchk(ptr);
+			printf("cur: %zu", cur);
 			if (cur >= 0)
-			// buff = ft_appendfmt(ptr, cur, ap);
-			cur++;
+			buff = ft_appendfmt(buff, ptr, cur, ap);
 		}
 		else
 		{
@@ -64,11 +64,13 @@ int	ft_printf(const char *fmt, ...)
 	}
 	if (buff)
 	{
-		ft_putstri(buff);
+		// ft_putstri(buff);
+		cur = ft_strlen(buff);
+		ft_putnstr(buff, ft_strlen(buff));
 		free(buff);
 	}
 	va_end(ap);
-	return (0);
+	return (cur);
 }
 
 ssize_t	ft_formatchk(char *ptr)
@@ -166,22 +168,50 @@ char	*ft_append2str_ul(char *buff, char c, int shift)
 	*(new_buff + buff_len + 1) = 0;
 	return (new_buff);
 }
-// char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
-// {
-// 	char	*new_buff;
-// 	char	*pnt_buff;
-// 	static t_prefix	*t_pre;
 
-// 	ft_freeprefix(t_pre);
-// 	if (*ptr == '%')
-// 		return (ft_appendchr(buff, ptr));
-// 	while (*ptr)
-// 	{
-// 		// t_pre->is_left =
-// 	}
-// 	// if (ft_specchk(ptr + cur))
-// 	// 	pnt_buff = ft_printf_spec(ptr + cur, ap);
-// }
+char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
+{
+	char	*new_buff;
+	char	*pnt_buff;
+
+	// printf("appenfmt ptr: %s\n", ptr);
+	// printf("appenfmt cur: %zu\n", cur);
+	// static t_prefix	*t_pre;
+
+	// ft_freeprefix(t_pre);
+	if (*(ptr + 1) == '%')
+		return (ft_appendchr(buff, ptr));
+	// while (*ptr)
+	// {
+	// 	// t_pre->is_left =
+	// }
+	if (ft_specchk(ptr + cur - 1))
+	{
+		pnt_buff = ft_printf_spec(ptr + cur - 1, ap);
+		if (!pnt_buff)
+		{
+			free(buff);
+			return (NULL);
+		}
+		new_buff = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(pnt_buff) + 1));
+		if (!new_buff)
+		{
+			free(buff);
+			return (NULL);
+		}
+		if (buff)
+		{
+			ft_memcpy(new_buff, buff, ft_strlen(buff));
+			ft_memcpy(new_buff + ft_strlen(buff), pnt_buff, ft_strlen(pnt_buff));
+			*(new_buff + ft_strlen(buff) + ft_strlen(pnt_buff) + 1) = 0;
+			free(buff);
+			free(pnt_buff);
+			return (new_buff);
+		}
+	}
+	free(buff);
+	return (NULL);
+}
 
 char	*ft_printf_spec(char *ptr, va_list ap)
 {
@@ -192,13 +222,14 @@ char	*ft_printf_spec(char *ptr, va_list ap)
 	if (*ptr == 'd' || *ptr == 'i')
 		return (ft_print_d(ap));
 	if (*ptr == 'p')
-		return (ft_print_addr(ap));
+		return (ft_print_p(ap));
 	if (*ptr == 'u')
 		return (ft_print_u(ap));
 	if (*ptr == 'x')
-		return (ft_print_x(ap));
+		return (ft_print_x(ap, 0, 0));
 	if (*ptr == 'X')
-		return (ft_print_X(ap));
+		return (ft_print_x(ap, 1, 0));
+	return (NULL);
 }
 
 // char	*ft_flagchk(const char *fmt, char *buff, va_list ap)

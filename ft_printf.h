@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/16 01:21:31 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:00:56 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ char	*ft_append2str_ul(char *buff, char c, int shift);
 char	*ft_print_addr(va_list ap);
 char	*ft_print_nbru_b(unsigned long long num, char *buff, int b, int shift);
 char	*ft_basenumber(int base);
+
+char	*ft_print_c(va_list ap);
+char	*ft_print_s(va_list ap);
+char	*ft_print_d(va_list ap);
+char	*ft_print_p(va_list ap);
+char	*ft_print_u(va_list ap);
+char	*ft_print_x(va_list ap, int is_shift, int is_sharp);
+
+char	*ft_printf_spec(char *ptr, va_list ap);
+char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap);
+
+
 
 typedef struct s_prefix
 {
