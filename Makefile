@@ -6,7 +6,7 @@
 #    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/17 20:48:15 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/17 23:50:55 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ $(NAME):	$(OBJS)
 clean:
 	rm -f $(OBJS)
 	rm -f *~
+	rm -f ft_printf_test
+	rm -f a.out
 
 fclean:	clean
 	rm -f $(NAME)
