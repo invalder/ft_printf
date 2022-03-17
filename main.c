@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/16 20:46:53 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:28:10 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ int	main(void)
 	// buff = NULL;
 	// buff = ft_print_nbru_b(1234567890, buff, 16, 0);
 	//printf("buff: %s\n", buff);
-	ft_printf("ftbuff: %d", 12345);
+	// p_len = printf("p %c %c %c \n", '0', 0, '1');
+	// ft_len = ft_printf("ft %c %c %c \n", '0', 0, '1');
+
+	p_len = printf(" %u \n", LONG_MAX);
+	ft_len = ft_printf(" %u \n", LONG_MAX);
 
 	//printf("testp: %p\n", buff);
 	// p_len = printf("%-10c\n", 'c');

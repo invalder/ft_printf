@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/16 20:51:52 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:21:09 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	ft_printf(const char *fmt, ...)
 	va_list	ap;
 	char	*ptr;
 	char	*buff;
-	int	cur;
+	int		cur;
 
+	cur = 0;
 	va_start(ap, fmt);
 	ptr = (char *)fmt;
 	buff = NULL;
@@ -50,10 +51,12 @@ int	ft_printf(const char *fmt, ...)
 		// printf("debug: %c\n", *ptr);
 		if (*ptr == '%')
 		{
+			// printf("inside %%\n");
 			cur = ft_formatchk(ptr);
-			printf("cur: %zu", cur);
-			if (cur >= 0)
-			buff = ft_appendfmt(buff, ptr, cur, ap);
+			// printf("cur: %d\n", cur);
+			if (cur > 0)
+				buff = ft_appendfmt(buff, ptr, cur, ap);
+			// printf("buff: %s\n", buff);
 		}
 		else
 		{
@@ -66,7 +69,7 @@ int	ft_printf(const char *fmt, ...)
 	{
 		// ft_putstri(buff);
 		cur = ft_strlen(buff);
-		ft_putnstr(buff, ft_strlen(buff));
+		ft_putnstr(buff, cur);
 		free(buff);
 	}
 	va_end(ap);
@@ -75,7 +78,7 @@ int	ft_printf(const char *fmt, ...)
 
 ssize_t	ft_formatchk(char *ptr)
 {
-	size_t	len;
+	ssize_t	len;
 
 	len = 1;
 	ptr++;
@@ -92,6 +95,7 @@ ssize_t	ft_formatchk(char *ptr)
 		len += 1;
 	else
 		len = -1;
+	// printf("%ld", len);
 	return (len);
 }
 
@@ -179,6 +183,10 @@ char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
 	// static t_prefix	*t_pre;
 
 	// ft_freeprefix(t_pre);
+	new_buff = NULL;
+	pnt_buff = NULL;
+	// printf("ptr: %s\n", ptr);
+	// printf("cur: %ld\n", cur);
 	if (*(ptr + 1) == '%')
 		return (ft_appendchr(buff, ptr));
 	// while (*ptr)
@@ -187,27 +195,29 @@ char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
 	// }
 	if (ft_specchk(ptr + cur - 1))
 	{
+		// printf("here\n");
 		pnt_buff = ft_printf_spec(ptr + cur - 1, ap);
+		// printf("pnt_buff: %s\n", pnt_buff);
 		if (!pnt_buff)
 		{
 			free(buff);
 			return (NULL);
 		}
 		new_buff = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(pnt_buff) + 1));
+		// new_buff = calloc((ft_strlen(buff) + ft_strlen(pnt_buff) + 1), sizeof(char));
 		if (!new_buff)
 		{
 			free(buff);
+			free(pnt_buff);
 			return (NULL);
 		}
-		if (buff)
-		{
-			ft_memcpy(new_buff, buff, ft_strlen(buff));
-			ft_memcpy(new_buff + ft_strlen(buff), pnt_buff, ft_strlen(pnt_buff));
-			*(new_buff + ft_strlen(buff) + ft_strlen(pnt_buff) + 1) = 0;
-			free(buff);
-			free(pnt_buff);
-			return (new_buff);
-		}
+		ft_memcpy(new_buff, buff, ft_strlen(buff));
+		ft_memcpy(new_buff + ft_strlen(buff), pnt_buff, ft_strlen(pnt_buff));
+		*(new_buff + ft_strlen(buff) + ft_strlen(pnt_buff)) = 0;
+		free(buff);
+		free(pnt_buff);
+		return (new_buff);
+
 	}
 	free(buff);
 	return (NULL);
@@ -215,6 +225,7 @@ char	*ft_appendfmt(char *buff, char *ptr, size_t cur, va_list ap)
 
 char	*ft_printf_spec(char *ptr, va_list ap)
 {
+	// printf("spec: %s\n", ptr);
 	if (*ptr == 'c')
 		return (ft_print_c(ap));
 	if (*ptr == 's')
