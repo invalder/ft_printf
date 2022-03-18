@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/17 20:40:52 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/18 23:00:43 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_print_c(va_list ap)
+char	*ft_print_c(va_list ap, int *len)
 {
 	char	*pnt_buff;
 
@@ -21,10 +21,11 @@ char	*ft_print_c(va_list ap)
 		return (NULL);
 	*pnt_buff = (char) va_arg(ap, int);
 	*(pnt_buff + 1) = 0;
+	*len += 1;
 	return (pnt_buff);
 }
 
-char	*ft_print_s(va_list ap)
+char	*ft_print_s(va_list ap, int *len)
 {
 	char	*pnt_buff;
 	char	*buff;
@@ -37,18 +38,24 @@ char	*ft_print_s(va_list ap)
 	}
 	else
 	{
-
+		pnt_buff = malloc(sizeof(char) * 7);
+		if (!pnt_buff)
+			return (NULL);
+		ft_memcpy(pnt_buff, "(null)", 7);
 	}
+	*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
 }
 
-char	*ft_print_d(va_list ap)
+char	*ft_print_d(va_list ap, int *len)
 {
 	char	*pnt_buff;
 
 	pnt_buff = NULL;
 	pnt_buff = ft_print_nbr(va_arg(ap, int), pnt_buff);
 	// printf("ft_print_d: %s\n", pnt_buff);
+	if (pnt_buff)
+		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
 }
 
@@ -76,7 +83,7 @@ char	*ft_print_nbr(ssize_t n, char *buff)
 	return (buff);
 }
 
-char	*ft_print_p(va_list ap)
+char	*ft_print_p(va_list ap, int *len)
 {
 	char				*pnt_buff;
 	unsigned long long	num;
@@ -93,13 +100,13 @@ char	*ft_print_p(va_list ap)
 	}
 	else
 	{
-		// printf("here\n");
-		pnt_buff = malloc(sizeof(char) * 6);
+		pnt_buff = malloc(sizeof(char) * 4);
 		if (!pnt_buff)
 			return (NULL);
-		ft_memcpy(pnt_buff, "(nil)", 6);
+		ft_memcpy(pnt_buff, "0x0", 4);
 	}
-	// printf("pnt_buff: %s", pnt_buff);
+	if (pnt_buff)
+		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
 }
 
@@ -137,7 +144,7 @@ char	*ft_basenumber(int base)
 	return (bres);
 }
 
-char	*ft_print_u(va_list ap)
+char	*ft_print_u(va_list ap, int *len)
 {
 	char			*pnt_buff;
 	unsigned int	num;
@@ -145,10 +152,12 @@ char	*ft_print_u(va_list ap)
 	num = (unsigned long long)va_arg(ap, void *);
 	pnt_buff = NULL;
 	pnt_buff = ft_print_nbru_b(num, pnt_buff, 10, 0);
+	if (pnt_buff)
+		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
 }
 
-char	*ft_print_x(va_list ap, int is_shift, int is_sharp)
+char	*ft_print_x(va_list ap, int is_shift, int is_sharp, int *len)
 {
 	char	*pnt_buff;
 	unsigned int	num;
@@ -166,5 +175,7 @@ char	*ft_print_x(va_list ap, int is_shift, int is_sharp)
 			ft_memcpy(pnt_buff, "0X", 3);
 	}
 	pnt_buff = ft_print_nbru_b(num, pnt_buff, 16, is_shift);
+	if (pnt_buff)
+		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/17 20:28:10 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/18 22:25:29 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(void)
 	// p_len = printf("p %c %c %c \n", '0', 0, '1');
 	// ft_len = ft_printf("ft %c %c %c \n", '0', 0, '1');
 
-	p_len = printf(" %u \n", LONG_MAX);
-	ft_len = ft_printf(" %u \n", LONG_MAX);
+	p_len = printf(" %c %c %c ", '0', 0, '1');
+	ft_len = ft_printf(" %c %c %c ", '0', 0, '1');
 
 	//printf("testp: %p\n", buff);
 	// p_len = printf("%-10c\n", 'c');
