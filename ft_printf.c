@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 10:47:04 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:56:32 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,15 +150,16 @@ char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf)
 	if (*ptr == 's')
 		spec = (ft_print_s(ap, len));
 	if (*ptr == 'd' || *ptr == 'i')
-		spec = (ft_print_d(ap, len));
+		spec = (ft_print_d(ap, len, t_pf));
 	if (*ptr == 'p')
 		spec = (ft_print_p(ap, len));
 	if (*ptr == 'u')
 		spec = (ft_print_u(ap, len));
 	if (*ptr == 'x')
-		spec = (ft_print_x(ap, 0, 0, len));
+		spec = (ft_print_x(ap, 0, t_pf->is_preceed, len));
 	if (*ptr == 'X')
-		spec = (ft_print_x(ap, 1, 0, len));
+		spec = (ft_print_x(ap, 1, t_pf->is_preceed, len));
+	// spec = ft_format_spec(ptr, spec, len, t_pf);
 	ft_freeprefix(t_pf);
 	return (spec);
 }

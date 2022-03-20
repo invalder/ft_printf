@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 10:45:33 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:56:59 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_basenumber(int base);
 char	*ft_print_addr(va_list ap);
 char	*ft_print_c(va_list ap, int *len);
 char	*ft_print_s(va_list ap, int *len);
-char	*ft_print_d(va_list ap, int *len);
+char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_p(va_list ap, int *len);
 char	*ft_print_u(va_list ap, int *len);
 char	*ft_append2str(char *buff, char c);
@@ -60,6 +60,7 @@ char	*ft_appendfmt2(char *ptr, t_prefix *t_pf, va_list ap);
 char	*ft_appendfmt(char *buff, char *ptr, int *len, va_list ap);
 char	*ft_mymemjoin(char *s1, char *s2, size_t len1, size_t len_t);
 char	*ft_print_x(va_list ap, int is_shift, int is_sharp, int *len);
+char	*ft_format_spec(char *ptr, char *spec, int *len, t_prefix *t_pf);
 char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_nbru_b(unsigned long long num, char *buff, int b, int shift);
 size_t	ft_isdigit(char c);

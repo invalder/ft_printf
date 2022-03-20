@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 00:00:40 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 00:04:42 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:10:50 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ char	*ft_print_x(va_list ap, int is_shift, int is_sharp, int *len)
 
 	num = (unsigned long long)va_arg(ap, void *);
 	pnt_buff = NULL;
-	if (is_sharp)
+	if (is_sharp && num > 0)
 	{
 		pnt_buff = malloc(sizeof(char) * 3);
-		if (pnt_buff)
+		if (!pnt_buff)
 			return (NULL);
 		if (is_shift)
-			ft_memcpy(pnt_buff, "0x", 3);
-		else
 			ft_memcpy(pnt_buff, "0X", 3);
+		else
+			ft_memcpy(pnt_buff, "0x", 3);
 	}
 	pnt_buff = ft_print_nbru_b(num, pnt_buff, 16, is_shift);
 	if (pnt_buff)

@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 00:04:28 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:56:11 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,27 @@ char	*ft_print_s(va_list ap, int *len)
 	return (pnt_buff);
 }
 
-char	*ft_print_d(va_list ap, int *len)
+char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 {
 	char	*pnt_buff;
+	int		num;
 
 	pnt_buff = NULL;
-	pnt_buff = ft_print_nbr(va_arg(ap, int), pnt_buff);
+	num = va_arg(ap, int);
+	if (num >= 0)
+	{
+		if (t_pf->is_sign || t_pf->is_space)
+		{
+			pnt_buff = malloc(sizeof(char) * 2);
+			if (!pnt_buff)
+				return (NULL);
+			if (t_pf->is_sign)
+				ft_memcpy(pnt_buff, "+", 2);
+			if (t_pf->is_space)
+				ft_memcpy(pnt_buff, "+", 2);
+		}
+	}
+	pnt_buff = ft_print_nbr(num, pnt_buff);
 	if (pnt_buff)
 		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);

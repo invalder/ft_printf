@@ -6,7 +6,7 @@
 #    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/20 02:36:38 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/20 14:13:32 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,9 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
+bonus: $(OBJS)
+	ar -rcs $(NAME) $(OBJS)
+
 clean:
 	rm -f $(OBJS)
 	rm -f *~
@@ -50,6 +53,7 @@ clean:
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f $(NAME_B)
 
 re:	fclean all
 

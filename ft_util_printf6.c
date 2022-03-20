@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_util_printf6.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 14:08:55 by nnakarac         ###   ########.fr       */
+/*   Created: 2022/03/20 13:28:13 by nnakarac          #+#    #+#             */
+/*   Updated: 2022/03/20 14:59:35 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
-int	main(void)
+char	*ft_format_spec(char *ptr, char *spec, int *len, t_prefix *t_pf)
 {
-	int		p_len;
-	int		ft_len;
+	//zero (for padding need width to be specidied)
 
-	p_len = printf(" %#x ", -1);
-	ft_len = ft_printf(" %#x ", -1);
-	printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
-	return (0);
+	//width
+
+	//precision
+
+	//munis -> left justified
+
+	return (spec);
 }
