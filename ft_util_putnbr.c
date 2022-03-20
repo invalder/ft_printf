@@ -6,11 +6,36 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:52:33 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/13 13:08:03 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 02:37:57 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+size_t	ft_nbrsize(ssize_t n)
+{
+	ssize_t	neg;
+	ssize_t	num;
+	ssize_t	len;
+
+	neg = 0;
+	len = 0;
+	num = n;
+	if (num < 0)
+	{
+		num *= -1;
+		neg = 1;
+		len++;
+	}
+	if (num < 10)
+		len++;
+	else
+	{
+		len = ft_putnbr((num - (num % 10)) / 10, len);
+		len = ft_putnbr((num % 10), len);
+	}
+	return (len);
+}
 
 size_t	ft_putnbr(ssize_t n, ssize_t len)
 {
@@ -40,24 +65,6 @@ size_t	ft_putnbr(ssize_t n, ssize_t len)
 	return (len);
 }
 
-char	*ft_basenumber(int base)
-{
-	char	*bres;
-
-	bres = malloc(sizeof(char) * 17);
-	if (!bres)
-		return (NULL);
-	if (base == 2)
-		strncpy(bres, "01", 3);
-	else if (base == 10)
-		strncpy(bres, "0123456789", 11);
-	else if (base == 16)
-		strncpy(bres, "0123456789abcdef", 17);
-	else
-		strncpy(bres, "", 2);
-	return (bres);
-}
-
 size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len)
 {
 	char	*base;
@@ -74,5 +81,15 @@ size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len)
 		len = ft_putnbru_base(num % b, b, shift, len);
 	}
 	free(base);
+	return (len);
+}
+
+size_t	ft_nbrcnt(char *ptr)
+{
+	size_t	len;
+
+	len = 0;
+	while (ft_isdigit(*(ptr++)))
+		len++;
 	return (len);
 }

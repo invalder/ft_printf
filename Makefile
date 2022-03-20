@@ -6,7 +6,7 @@
 #    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/18 22:02:18 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/20 02:36:38 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,17 @@ SRCS	=	ft_printf.c \
 			ft_util_putnbr.c \
 			ft_format_chk.c \
 			ft_util_mem.c \
-			ft_util_printf1.c
+			ft_util_printf1.c \
+			ft_util_printf2.c \
+			ft_util_printf3.c \
+			ft_util_printf4.c \
+			ft_util_printf5.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
 NAME	=	libftprintf.a
+
+NAME_B	=	libftprintf_bonus.a
 
 CC = gcc
 

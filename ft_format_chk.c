@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:59:27 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/14 22:49:39 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/20 02:27:16 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,4 @@ size_t	ft_specchk(char *ptr)
 size_t	ft_isdigit(char c)
 {
 	return ((c >= '0' && c <= '9'));
-}
-
-size_t	ft_nbrcnt(char *ptr)
-{
-	size_t	len;
-
-	len = 0;
-	while (ft_isdigit(*(ptr++)))
-		len++;
-	return (len);
 }
