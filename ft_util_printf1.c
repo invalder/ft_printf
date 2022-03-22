@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 14:56:11 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:12:33 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,36 @@ char	*ft_print_s(va_list ap, int *len)
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 {
 	char	*pnt_buff;
-	int		num;
+	ssize_t	num;
+	int 	num_l;
+	int		cur;
+	int		neg;
 
+	cur = 0;
+	neg = 0;
 	pnt_buff = NULL;
 	num = va_arg(ap, int);
+	if (num < 0)
+	{
+		num *= -1;
+		neg = 1;
+		pnt_buff = ft_appendchr(pnt_buff, "-", &cur);
+	}
+	num_l = ft_nbrsize(num, 0);
 	if (num >= 0)
 	{
 		if (t_pf->is_sign || t_pf->is_space)
 		{
-			pnt_buff = malloc(sizeof(char) * 2);
-			if (!pnt_buff)
-				return (NULL);
 			if (t_pf->is_sign)
-				ft_memcpy(pnt_buff, "+", 2);
-			if (t_pf->is_space)
-				ft_memcpy(pnt_buff, "+", 2);
+				pnt_buff = ft_appendchr(pnt_buff, "+", &cur);
+			else if (t_pf->is_space && !neg)
+				pnt_buff = ft_appendchr(pnt_buff, " ", &cur);
 		}
+		if (t_pf->precision - num_l > 0)
+			while (t_pf->precision - num_l++)
+				pnt_buff = ft_appendchr(pnt_buff, "0", &cur);
+		//add width
+		// pnt_buff = ft_appendwidth(pnt_buff, t_pf, num);
 	}
 	pnt_buff = ft_print_nbr(num, pnt_buff);
 	if (pnt_buff)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf6.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 13:28:13 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 14:59:35 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:33:56 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 char	*ft_format_spec(char *ptr, char *spec, int *len, t_prefix *t_pf)
 {
-	//zero (for padding need width to be specidied)
+	int	s_len;
 
-	//width
+	// if (*ptr != 'c')
+	// 	s_len = ft_strlen(spec);
+	// else
+	// 	s_len = 1;
+	// //zero (for padding need width to be specidied)
+
+	// //width
+	// if (t_pf->width > 0)
+	// {
+
+	// }
 
 	//precision
 

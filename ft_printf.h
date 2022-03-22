@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 14:56:59 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:31:59 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ size_t	ft_nbrcnt(char *ptr);
 size_t	ft_flgchk(char *ptr);
 size_t	ft_specchk(char *ptr);
 size_t	ft_putstri(char *str);
-size_t	ft_nbrsize(ssize_t n);
 size_t	ft_widthchk(char *ptr);
 size_t	ft_precisechk(char *ptr);
 size_t	ft_nsignchk(const char *fmt);
 size_t	ft_putcharul(char c, int shift);
 size_t	ft_putnbr(ssize_t n, ssize_t len);
+size_t	ft_nbrsize(ssize_t n, ssize_t len);
 size_t	ft_putaddr_base(void *n, int base);
 size_t	ft_signchk(const char *fmt, va_list ap);
 size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec);

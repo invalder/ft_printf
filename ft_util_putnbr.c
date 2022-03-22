@@ -3,36 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_putnbr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:52:33 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 02:37:57 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:07:32 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_nbrsize(ssize_t n)
+size_t	ft_nbrsize(ssize_t n, ssize_t len)
 {
-	ssize_t	neg;
 	ssize_t	num;
-	ssize_t	len;
 
-	neg = 0;
-	len = 0;
 	num = n;
 	if (num < 0)
 	{
 		num *= -1;
-		neg = 1;
 		len++;
 	}
 	if (num < 10)
 		len++;
 	else
 	{
-		len = ft_putnbr((num - (num % 10)) / 10, len);
-		len = ft_putnbr((num % 10), len);
+		len = ft_nbrsize((num - (num % 10)) / 10, len);
+		len = ft_nbrsize((num % 10), len);
 	}
 	return (len);
 }

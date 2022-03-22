@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 14:56:32 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:03:49 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ int	ft_printf(const char *fmt, ...)
 	va_list	ap;
 	char	*ptr;
 	char	*buff;
-	int		cur;
 	int		len;
 
-	cur = 0;
 	len = 0;
 	va_start(ap, fmt);
 	ptr = (char *)fmt;

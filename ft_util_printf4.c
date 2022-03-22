@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:19:25 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 13:41:46 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:04:16 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_is_precision(char *ptr, t_prefix *t_pf, va_list ap)
 		}
 		else if (*ptr >= '0' && *ptr <= '9')
 		{
-			return (ft_myatoi(ptr, t_pf, 0) + 1);
+			return (ft_myatoi(ptr, t_pf, 1) + 1);
 		}
 		else if (ft_specchk(ptr))
 		{

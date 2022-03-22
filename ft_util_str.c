@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:50:42 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 00:05:31 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:03:39 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec)
 
 	len = 0;
 	num = 0;
-	while (*(ptr + len) != '.' || !ft_specchk(ptr + len))
+	while (*(ptr + len) != '.' && !ft_specchk(ptr + len))
 	{
-		num = (num * 10) + (*ptr - '0');
+		num = (num * 10) + (*(ptr + len) - '0');
 		len++;
 	}
 	if (is_prec)
