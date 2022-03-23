@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/22 11:12:33 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:22:22 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 	num = va_arg(ap, int);
 	if (num < 0)
 	{
-		num *= -1;
+		// num *= -1;
 		neg = 1;
-		pnt_buff = ft_appendchr(pnt_buff, "-", &cur);
+		// pnt_buff = ft_appendchr(pnt_buff, "-", &cur);
 	}
 	num_l = ft_nbrsize(num, 0);
-	if (num >= 0)
-	{
+	// if (num >= 0)
+	// {
 		if (t_pf->is_sign || t_pf->is_space)
 		{
-			if (t_pf->is_sign)
+			if (t_pf->is_sign && !neg)
 				pnt_buff = ft_appendchr(pnt_buff, "+", &cur);
 			else if (t_pf->is_space && !neg)
 				pnt_buff = ft_appendchr(pnt_buff, " ", &cur);
@@ -80,8 +80,12 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 				pnt_buff = ft_appendchr(pnt_buff, "0", &cur);
 		//add width
 		// pnt_buff = ft_appendwidth(pnt_buff, t_pf, num);
-	}
+	// }
 	pnt_buff = ft_print_nbr(num, pnt_buff);
+	// add width and check alignment
+	pnt_buff = ft_appendwidth(pnt_buff, t_pf, ft_strlen(pnt_buff), num);
+	if (neg)
+		pnt_buff = ft_mystrjoin("-", pnt_buff, 0, 1);
 	if (pnt_buff)
 		*len += ft_strlen(pnt_buff);
 	return (pnt_buff);
@@ -89,18 +93,18 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 
 char	*ft_print_nbr(ssize_t n, char *buff)
 {
-	ssize_t	neg;
+	// ssize_t	neg;
 	ssize_t	num;
 
-	neg = 0;
+	// neg = 0;
 	num = n;
 	if (num < 0)
 	{
 		num *= -1;
-		neg = 1;
+		// neg = 1;
 	}
-	if (neg)
-		buff = ft_append2str(buff, '-');
+	// if (neg)
+	// 	buff = ft_append2str(buff, '-');
 	if (num < 10)
 		buff = ft_append2str(buff, num + '0');
 	else

@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:52:33 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 16:07:32 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:23:01 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	ft_nbrsize(ssize_t n, ssize_t len)
 	if (num < 0)
 	{
 		num *= -1;
-		len++;
+		// len++;
 	}
 	if (num < 10)
 		len++;

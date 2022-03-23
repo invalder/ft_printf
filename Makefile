@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/20 14:13:32 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/24 01:35:54 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	=	ft_printf.c \
 			ft_util_printf3.c \
 			ft_util_printf4.c \
 			ft_util_printf5.c \
+			ft_util_printf6.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

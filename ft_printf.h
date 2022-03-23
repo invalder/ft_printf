@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 15:31:59 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:17:25 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ typedef struct s_prefix
 	int		width;
 	int		precision;
 }	t_prefix;
+
+char	*ft_appendwidth(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_mycalloc(size_t size, size_t len, char c);
+char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
 
 int		ft_printf(const char *fmt, ...);
 int		ft_is_left(char *ptr, t_prefix *t_pf);
@@ -81,5 +85,7 @@ size_t	ft_signchk(const char *fmt, va_list ap);
 size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec);
 size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len);
 ssize_t	ft_formatchk(char *ptr);
+
+
 
 #endif
