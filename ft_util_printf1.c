@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/24 02:22:22 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:05:06 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_print_c(va_list ap, int *len)
+char	*ft_print_c(va_list ap, int *len, t_prefix *t_pf)
 {
 	char	*pnt_buff;
 
@@ -22,6 +22,7 @@ char	*ft_print_c(va_list ap, int *len)
 	*pnt_buff = (char) va_arg(ap, int);
 	*(pnt_buff + 1) = 0;
 	*len += 1;
+	pnt_buff = ft_appendwidth_c(pnt_buff, t_pf, len);
 	return (pnt_buff);
 }
 
@@ -83,7 +84,7 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 	// }
 	pnt_buff = ft_print_nbr(num, pnt_buff);
 	// add width and check alignment
-	pnt_buff = ft_appendwidth(pnt_buff, t_pf, ft_strlen(pnt_buff), num);
+	pnt_buff = ft_appendwidth_d(pnt_buff, t_pf, ft_strlen(pnt_buff), num);
 	if (neg)
 		pnt_buff = ft_mystrjoin("-", pnt_buff, 0, 1);
 	if (pnt_buff)

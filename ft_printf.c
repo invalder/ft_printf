@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 16:03:49 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:35:58 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf)
 
 	spec = NULL;
 	if (*ptr == 'c')
-		spec = (ft_print_c(ap, len));
+		spec = (ft_print_c(ap, len, t_pf));
 	if (*ptr == 's')
 		spec = (ft_print_s(ap, len));
 	if (*ptr == 'd' || *ptr == 'i')

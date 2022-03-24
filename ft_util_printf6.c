@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf6.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 13:28:13 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/24 02:19:14 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:13:47 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // 	return (spec);
 // }
 
-char	*ft_appendwidth(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num)
+char	*ft_appendwidth_d(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num)
 {
 	char	*width_buff;
 	char	*ret_buff;
@@ -56,6 +56,33 @@ char	*ft_appendwidth(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num)
 			ret_buff = ft_mystrjoin(pnt_buff, width_buff, 1, 1);
 		else
 			ret_buff = ft_mystrjoin(width_buff, pnt_buff, 1, 1);
+		return (ret_buff);
+	}
+	else
+		return (pnt_buff);
+}
+
+char	*ft_appendwidth_c(char *pnt_buff, t_prefix *t_pf, int *len)
+{
+	char	*ret_buff;
+	char	append_chr;
+
+	ret_buff = NULL;
+	append_chr = ' ';
+	if ((size_t)t_pf->width > 1)
+	{
+		ret_buff = ft_mycalloc(1, t_pf->width + 1, append_chr);
+		if (t_pf->is_left)
+		{
+			ft_memcpy(ret_buff, pnt_buff, 1);
+			free(pnt_buff);
+		}
+		else
+		{
+			ft_memcpy(ret_buff + t_pf->width - 1, pnt_buff, 1);
+			free(pnt_buff);
+		}
+		*len += t_pf->width - 1;
 		return (ret_buff);
 	}
 	else

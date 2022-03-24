@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/24 02:17:25 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:13:17 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_prefix
 	int		precision;
 }	t_prefix;
 
-char	*ft_appendwidth(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_appendwidth_d(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_appendwidth_c(char *pnt_buff, t_prefix *t_pf, int *len);
 char	*ft_mycalloc(size_t size, size_t len, char c);
 char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
 
@@ -50,7 +51,7 @@ void	ft_freeprefix(t_prefix *t_pf);
 char	*ft_freemem(char *ptr);
 char	*ft_basenumber(int base);
 char	*ft_print_addr(va_list ap);
-char	*ft_print_c(va_list ap, int *len);
+char	*ft_print_c(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_s(va_list ap, int *len);
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_p(va_list ap, int *len);
