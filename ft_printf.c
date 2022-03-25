@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/24 16:35:58 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:46:22 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,17 +146,17 @@ char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf)
 	if (*ptr == 'c')
 		spec = (ft_print_c(ap, len, t_pf));
 	if (*ptr == 's')
-		spec = (ft_print_s(ap, len));
+		spec = (ft_print_s(ap, len, t_pf));
 	if (*ptr == 'd' || *ptr == 'i')
 		spec = (ft_print_d(ap, len, t_pf));
 	if (*ptr == 'p')
-		spec = (ft_print_p(ap, len));
+		spec = (ft_print_p(ap, len, t_pf));
 	if (*ptr == 'u')
-		spec = (ft_print_u(ap, len));
+		spec = (ft_print_u(ap, len, t_pf));
 	if (*ptr == 'x')
-		spec = (ft_print_x(ap, 0, t_pf->is_preceed, len));
+		spec = (ft_print_x(ap, 0, t_pf, len));
 	if (*ptr == 'X')
-		spec = (ft_print_x(ap, 1, t_pf->is_preceed, len));
+		spec = (ft_print_x(ap, 1, t_pf, len));
 	// spec = ft_format_spec(ptr, spec, len, t_pf);
 	ft_freeprefix(t_pf);
 	return (spec);

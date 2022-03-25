@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:17:12 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 02:18:10 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/25 02:07:59 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_freeprefix(t_prefix *t_pf)
 	t_pf->is_iszero = 0;
 	t_pf->width = 0;
 	t_pf->precision = 0;
+	t_pf->is_precision = 0;
 }
 
 int	ft_is_left(char *ptr, t_prefix *t_pf)

@@ -6,7 +6,7 @@
 /*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/24 22:13:17 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/26 03:58:45 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@ typedef struct s_prefix
 	int		is_iszero;
 	int		width;
 	int		precision;
+	int		is_precision;
 }	t_prefix;
+
+char	*ft_mysubstr(char *s, unsigned int start, size_t len);
+size_t	ft_strlcpy(char *dst, char *src, size_t maxlen);
+char	*ft_appendwidth_u(char *pnt_buff, t_prefix *t_pf);
+size_t	ft_nbrusize_base(size_t n, size_t len, size_t b);
 
 char	*ft_appendwidth_d(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num);
 char	*ft_appendwidth_c(char *pnt_buff, t_prefix *t_pf, int *len);
+char	*ft_appendwidth_p(char *pnt_buff, t_prefix *t_pf);
+char	*ft_appendwidth_x(char *pnt_buff, t_prefix *t_pf, int is_shift, unsigned int num);
 char	*ft_mycalloc(size_t size, size_t len, char c);
 char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
 
@@ -52,10 +60,10 @@ char	*ft_freemem(char *ptr);
 char	*ft_basenumber(int base);
 char	*ft_print_addr(va_list ap);
 char	*ft_print_c(va_list ap, int *len, t_prefix *t_pf);
-char	*ft_print_s(va_list ap, int *len);
+char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf);
-char	*ft_print_p(va_list ap, int *len);
-char	*ft_print_u(va_list ap, int *len);
+char	*ft_print_p(va_list ap, int *len, t_prefix *t_pf);
+char	*ft_print_u(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_append2str(char *buff, char c);
 char	*ft_print_nbr(ssize_t n, char *buff);
 char	*ft_appendchr(char *buff, char *ptr, int *len);
@@ -64,7 +72,7 @@ char	*ft_append2str_ul(char *buff, char c, int shift);
 char	*ft_appendfmt2(char *ptr, t_prefix *t_pf, va_list ap);
 char	*ft_appendfmt(char *buff, char *ptr, int *len, va_list ap);
 char	*ft_mymemjoin(char *s1, char *s2, size_t len1, size_t len_t);
-char	*ft_print_x(va_list ap, int is_shift, int is_sharp, int *len);
+char	*ft_print_x(va_list ap, int is_shift, t_prefix *t_pf, int *len);
 char	*ft_format_spec(char *ptr, char *spec, int *len, t_prefix *t_pf);
 char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_nbru_b(unsigned long long num, char *buff, int b, int shift);

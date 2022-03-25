@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_printf4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:19:25 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 16:04:16 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/25 02:08:37 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_is_precision(char *ptr, t_prefix *t_pf, va_list ap)
 {
 	if (*ptr == '.')
 	{
+		t_pf->is_precision = 1;
 		ptr++;
 		if (*ptr == '*')
 		{
