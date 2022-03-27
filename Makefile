@@ -6,11 +6,18 @@
 #    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/26 15:08:14 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/28 03:35:12 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_printf.c \
+			ft_util_format.c \
+			ft_util_print_c.c \
+			ft_util_print_d.c \
+			ft_util_print_p.c \
+			ft_util_print_u.c \
+			ft_util_print_s.c \
+			ft_util_print_x.c \
 			ft_util_char.c \
 			ft_util_str1.c \
 			ft_util_str2.c \
