@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/27 19:37:33 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 00:02:41 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf)
 	}
 	if (t_pf->is_precision && (size_t)t_pf->precision < buff_len)
 		p_buff = ft_mysubstr(p_buff, 0, t_pf->precision);
+	buff_len = ft_strlen(p_buff);
 	if ((size_t)t_pf->width > buff_len)
 	{
 		width_buff = ft_mycalloc(1, t_pf->width - buff_len + 1, ' ');
@@ -93,7 +94,12 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 		while (t_pf->precision - num_l++)
 			p_buff = ft_appendchr(p_buff, "0", &cur);
 	}
-	p_buff = ft_print_nbr(num, p_buff);
+	// printf("debug: %s\n", p_buff);
+	if (num == 0 && (t_pf->is_precision && t_pf->precision == 0))
+		p_buff = ft_mystrjoin(p_buff, "", 1, 0);
+	else
+		p_buff = ft_print_nbr(num, p_buff);
+	// printf("debug: %s\n", p_buff);
 	p_buff = ft_append_d(p_buff, t_pf, ft_strlen(p_buff), num);
 	if (p_buff)
 		*len += ft_strlen(p_buff);

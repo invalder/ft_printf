@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 00:00:40 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/26 15:00:20 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 00:04:29 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ char	*ft_print_u(va_list ap, int *len, t_prefix *t_pf)
 		while (t_pf->precision - num_l++)
 			p_buff = ft_appendchr(p_buff, "0", &cur);
 	}
-	p_buff = ft_print_nbru_b(num, p_buff, 10, 0);
+	if (num == 0 && (t_pf->is_precision && t_pf->precision == 0))
+		p_buff = ft_mystrjoin(p_buff, "", 1, 0);
+	else
+		p_buff = ft_print_nbru_b(num, p_buff, 10, 0);
 	p_buff = ft_append_u(p_buff, t_pf);
 	if (p_buff)
 		*len += ft_strlen(p_buff);
@@ -113,7 +116,10 @@ char	*ft_print_x(va_list ap, int is_shift, t_prefix *t_pf, int *len)
 		while (t_pf->precision - num_l++)
 			p_buff = ft_appendchr(p_buff, "0", &cur);
 	}
-	p_buff = ft_print_nbru_b(num, p_buff, 16, is_shift);
+	if (num == 0 && (t_pf->is_precision && t_pf->precision == 0))
+		p_buff = ft_mystrjoin(p_buff, "", 1, 0);
+	else
+		p_buff = ft_print_nbru_b(num, p_buff, 16, is_shift);
 	p_buff = ft_append_x(p_buff, t_pf, is_shift, num);
 	if (p_buff)
 		*len += ft_strlen(p_buff);

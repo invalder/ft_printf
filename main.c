@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/27 19:50:38 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/27 23:59:36 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(void)
 	int		p_len;
 	int		ft_len;
 
-	p_len = printf("p %000042i \n", -1);
-	ft_len = ft_printf("f %000042i \n", -1);
+	p_len = printf("p the number is %.0u\n", 0);
+	ft_len = ft_printf("f the number is %.0u\n", 0);
 	printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
 	return (0);
 }
