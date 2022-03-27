@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:50:42 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 16:03:39 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:02:01 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,33 @@ size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec)
 	else
 		t_pf->width = num;
 	return (len);
+}
+
+char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2)
+{
+	char	*str;
+	int		s1_len;
+	int		s2_len;
+
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (str)
+	{
+		ft_memcpy(str, s1, s1_len);
+		ft_memcpy(str + s1_len, s2, s2_len + 1);
+	}
+	else
+	{
+		if (free_s1)
+			ft_freemem(s1);
+		if (free_s2)
+			ft_freemem(s2);
+		return (NULL);
+	}
+	if (free_s1)
+		ft_freemem(s1);
+	if (free_s2)
+		ft_freemem(s2);
+	return (str);
 }

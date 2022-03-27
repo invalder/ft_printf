@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/26 03:58:45 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:56:16 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ typedef struct s_prefix
 
 char	*ft_mysubstr(char *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, char *src, size_t maxlen);
-char	*ft_appendwidth_u(char *pnt_buff, t_prefix *t_pf);
+char	*ft_append_u(char *p_buff, t_prefix *t_pf);
 size_t	ft_nbrusize_base(size_t n, size_t len, size_t b);
 
-char	*ft_appendwidth_d(char *pnt_buff, t_prefix *t_pf, size_t len, ssize_t num);
-char	*ft_appendwidth_c(char *pnt_buff, t_prefix *t_pf, int *len);
-char	*ft_appendwidth_p(char *pnt_buff, t_prefix *t_pf);
-char	*ft_appendwidth_x(char *pnt_buff, t_prefix *t_pf, int is_shift, unsigned int num);
+char	*ft_append_d(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_append_c(char *p_buff, t_prefix *t_pf, int *len);
+char	*ft_append_p(char *p_buff, t_prefix *t_pf);
+char	*ft_append_x(char *p_buff, t_prefix *t_pf, int shift, unsigned int num);
 char	*ft_mycalloc(size_t size, size_t len, char c);
 char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
 
@@ -94,7 +94,5 @@ size_t	ft_signchk(const char *fmt, va_list ap);
 size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec);
 size_t	ft_putnbru_base(unsigned long long num, int b, int shift, ssize_t len);
 ssize_t	ft_formatchk(char *ptr);
-
-
 
 #endif

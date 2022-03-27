@@ -6,13 +6,14 @@
 #    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/24 01:35:54 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/26 15:08:14 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_printf.c \
 			ft_util_char.c \
-			ft_util_str.c \
+			ft_util_str1.c \
+			ft_util_str2.c \
 			ft_util_putnbr.c \
 			ft_format_chk.c \
 			ft_util_mem.c \
@@ -22,6 +23,7 @@ SRCS	=	ft_printf.c \
 			ft_util_printf4.c \
 			ft_util_printf5.c \
 			ft_util_printf6.c \
+			ft_util_printf7.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

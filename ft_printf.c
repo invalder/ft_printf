@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 09:32:22 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/25 20:46:22 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:57:18 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*ft_sub_printf(char *ptr, int *len, va_list ap)
 char	*ft_appendfmt(char *buff, char *ptr, int *len, va_list ap)
 {
 	char			*new_buff;
-	char			*pnt_buff;
+	char			*p_buff;
 	int				p_len;
 	static t_prefix	t_pf;
 
@@ -109,12 +109,12 @@ char	*ft_appendfmt(char *buff, char *ptr, int *len, va_list ap)
 	ptr = ft_appendfmt2(ptr, &t_pf, ap);
 	if (ft_specchk(ptr))
 	{
-		pnt_buff = ft_printf_spec(ptr, ap, len, &t_pf);
-		if (!pnt_buff)
+		p_buff = ft_printf_spec(ptr, ap, len, &t_pf);
+		if (!p_buff)
 			return (ft_freemem(buff));
-		new_buff = ft_mymemjoin(buff, pnt_buff, p_len, *len);
+		new_buff = ft_mymemjoin(buff, p_buff, p_len, *len);
 		free(buff);
-		free(pnt_buff);
+		free(p_buff);
 		if (!new_buff)
 			return (ft_freemem(new_buff));
 		return (new_buff);
@@ -157,7 +157,6 @@ char	*ft_printf_spec(char *ptr, va_list ap, int *len, t_prefix *t_pf)
 		spec = (ft_print_x(ap, 0, t_pf, len));
 	if (*ptr == 'X')
 		spec = (ft_print_x(ap, 1, t_pf, len));
-	// spec = ft_format_spec(ptr, spec, len, t_pf);
 	ft_freeprefix(t_pf);
 	return (spec);
 }

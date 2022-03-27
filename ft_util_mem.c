@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_mem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnakarac <nnakarac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 00:13:19 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/20 10:46:35 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:01:27 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*ft_mycalloc(size_t size, size_t len, char c)
+{
+	char	*buff;
+	size_t	cnt;
+
+	cnt = 0;
+	if (len && size)
+	{
+		buff = malloc(size * len);
+		if (!buff)
+			return (NULL);
+		while (cnt < len)
+		{
+			*(buff + cnt++) = c;
+		}
+		*(buff + cnt - 1) = 0;
+		return (buff);
+	}
+	return (NULL);
+}
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
