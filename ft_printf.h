@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/26 14:56:16 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 02:20:45 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ char	*ft_append_u(char *p_buff, t_prefix *t_pf);
 size_t	ft_nbrusize_base(size_t n, size_t len, size_t b);
 
 char	*ft_append_d(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_append_d_2(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num);
+char	*ft_append_d_3(char *p_buff, t_prefix *t_pf, char *wbuff, ssize_t num);
 char	*ft_append_c(char *p_buff, t_prefix *t_pf, int *len);
 char	*ft_append_p(char *p_buff, t_prefix *t_pf);
-char	*ft_append_x(char *p_buff, t_prefix *t_pf, int shift, unsigned int num);
+char	*ft_append_x(char *p_buff, t_prefix *t_pf, int up, unsigned int n);
+char	*ft_append_x_2(char *p_buff, t_prefix *t_pf, int up, unsigned int n);
 char	*ft_mycalloc(size_t size, size_t len, char c);
 char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
+char	*ft_append_zx(char *buff, t_prefix *t_pf, int up, unsigned int num);
 
 int		ft_printf(const char *fmt, ...);
 int		ft_is_left(char *ptr, t_prefix *t_pf);
@@ -61,7 +65,9 @@ char	*ft_basenumber(int base);
 char	*ft_print_addr(va_list ap);
 char	*ft_print_c(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf);
+char	*ft_print_s2(char *buff);
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf);
+char	*ft_print_d_2(ssize_t num, t_prefix *t_pf);
 char	*ft_print_p(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_u(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_append2str(char *buff, char c);

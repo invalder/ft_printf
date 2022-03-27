@@ -6,13 +6,32 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 13:28:13 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/27 19:52:14 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 02:09:40 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 char	*ft_append_d(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num)
+{
+	int		neg;
+
+	neg = 0;
+	if (num < 0)
+		neg = 1;
+	if ((size_t)t_pf->width > len + neg)
+	{
+		return (ft_append_d_2(p_buff, t_pf, len, num));
+	}
+	else
+	{
+		if (neg)
+			p_buff = ft_mystrjoin("-", p_buff, 0, 1);
+		return (p_buff);
+	}
+}
+
+char	*ft_append_d_2(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num)
 {
 	char	*width_buff;
 	char	*ret_buff;
@@ -27,34 +46,41 @@ char	*ft_append_d(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num)
 		neg = 1;
 	if (t_pf->is_iszero && !t_pf->is_precision)
 		append_chr = '0';
-	if ((size_t)t_pf->width > len + neg)
+	if (neg && t_pf->is_precision)
+		p_buff = ft_mystrjoin("-", p_buff, 0, 1);
+	width_buff = ft_mycalloc(1, t_pf->width - (len + neg) + 1, append_chr);
+	ret_buff = ft_append_d_3(p_buff, t_pf, width_buff, num);
+	width_buff = NULL;
+	return (ret_buff);
+}
+
+char	*ft_append_d_3(char *p_buff, t_prefix *t_pf, char *wbuff, ssize_t num)
+{
+	char	*ret_buff;
+	char	append_chr;
+	int		neg;
+
+	append_chr = ' ';
+	neg = 0;
+	if (num < 0)
+		neg = 1;
+	if (t_pf->is_iszero && !t_pf->is_precision)
+		append_chr = '0';
+	if (t_pf->is_left)
 	{
-		// printf("Here1\n");
-		if (neg && t_pf->is_precision)
-			p_buff = ft_mystrjoin("-", p_buff, 0, 1);
-		width_buff = ft_mycalloc(1, t_pf->width - (len + neg) + 1, append_chr);
-		if (t_pf->is_left)
-		{
-			ret_buff = ft_mystrjoin(p_buff, width_buff, 1, 1);
-			if (neg && !t_pf->is_precision)
-				ret_buff = ft_mystrjoin("-", ret_buff, 0, 1);
-		}
-		else
-		{
-			if (neg && !t_pf->is_precision && append_chr != '0')
-				p_buff = ft_mystrjoin("-", p_buff, 0, 1);
-			ret_buff = ft_mystrjoin(width_buff, p_buff, 1, 1);
-			if (neg && !t_pf->is_precision && append_chr == '0')
-				ret_buff = ft_mystrjoin("-", ret_buff, 0, 1);
-		}
-		return (ret_buff);
+		ret_buff = ft_mystrjoin(p_buff, wbuff, 1, 1);
+		if (neg && !t_pf->is_precision)
+			ret_buff = ft_mystrjoin("-", ret_buff, 0, 1);
 	}
 	else
 	{
-		if (neg)
+		if (neg && !t_pf->is_precision && append_chr != '0')
 			p_buff = ft_mystrjoin("-", p_buff, 0, 1);
-		return (p_buff);
+		ret_buff = ft_mystrjoin(wbuff, p_buff, 1, 1);
+		if (neg && append_chr == '0')
+			ret_buff = ft_mystrjoin("-", ret_buff, 0, 1);
 	}
+	return (ret_buff);
 }
 
 char	*ft_append_c(char *p_buff, t_prefix *t_pf, int *len)

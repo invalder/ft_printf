@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 07:32:35 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 00:02:41 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:32:04 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,8 @@ char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf)
 
 	buff = va_arg(ap, char *);
 	buff_len = ft_strlen(buff);
-	if (buff)
-	{
-		p_buff = malloc(sizeof(char) * (ft_strlen(buff) + 1));
-		if (!p_buff)
-			return (NULL);
-		ft_memcpy(p_buff, buff, (ft_strlen(buff) + 1));
-	}
-	else
-	{
-		p_buff = malloc(sizeof(char) * 7);
-		if (!p_buff)
-			return (NULL);
-		ft_memcpy(p_buff, "(null)", 7);
-		buff_len = 6;
-	}
+	p_buff = ft_print_s2(buff);
+	buff_len = ft_strlen(p_buff);
 	if (t_pf->is_precision && (size_t)t_pf->precision < buff_len)
 		p_buff = ft_mysubstr(p_buff, 0, t_pf->precision);
 	buff_len = ft_strlen(p_buff);
@@ -67,18 +54,55 @@ char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf)
 	return (p_buff);
 }
 
+char	*ft_print_s2(char *buff)
+{
+	char	*p_buff;
+
+	if (buff)
+	{
+		p_buff = malloc(sizeof(char) * (ft_strlen(buff) + 1));
+		if (!p_buff)
+			return (NULL);
+		ft_memcpy(p_buff, buff, (ft_strlen(buff) + 1));
+	}
+	else
+	{
+		p_buff = malloc(sizeof(char) * 7);
+		if (!p_buff)
+			return (NULL);
+		ft_memcpy(p_buff, "(null)", 7);
+	}
+	return (p_buff);
+}
+
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 {
 	char	*p_buff;
 	ssize_t	num;
+
+	p_buff = NULL;
+	num = va_arg(ap, int);
+	p_buff = ft_print_d_2(num, t_pf);
+	if (num == 0 && (t_pf->is_precision && t_pf->precision == 0))
+		p_buff = ft_mystrjoin(p_buff, "", 1, 0);
+	else
+		p_buff = ft_print_nbr(num, p_buff);
+	p_buff = ft_append_d(p_buff, t_pf, ft_strlen(p_buff), num);
+	if (p_buff)
+		*len += ft_strlen(p_buff);
+	return (p_buff);
+}
+
+char	*ft_print_d_2(ssize_t num, t_prefix *t_pf)
+{
+	char	*p_buff;
 	int		num_l;
-	int		cur;
 	int		neg;
+	int		cur;
 
 	cur = 0;
 	neg = 0;
 	p_buff = NULL;
-	num = va_arg(ap, int);
 	if (num < 0)
 		neg = 1;
 	num_l = ft_nbrsize(num, 0);
@@ -94,15 +118,6 @@ char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf)
 		while (t_pf->precision - num_l++)
 			p_buff = ft_appendchr(p_buff, "0", &cur);
 	}
-	// printf("debug: %s\n", p_buff);
-	if (num == 0 && (t_pf->is_precision && t_pf->precision == 0))
-		p_buff = ft_mystrjoin(p_buff, "", 1, 0);
-	else
-		p_buff = ft_print_nbr(num, p_buff);
-	// printf("debug: %s\n", p_buff);
-	p_buff = ft_append_d(p_buff, t_pf, ft_strlen(p_buff), num);
-	if (p_buff)
-		*len += ft_strlen(p_buff);
 	return (p_buff);
 }
 
