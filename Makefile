@@ -6,12 +6,15 @@
 #    By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 12:22:49 by nnakarac          #+#    #+#              #
-#    Updated: 2022/03/28 03:35:12 by nnakarac         ###   ########.fr        #
+#    Updated: 2022/03/28 23:26:43 by nnakarac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_printf.c \
-			ft_util_format.c \
+			ft_util_format1.c \
+			ft_util_format2.c \
+			ft_util_format3.c \
+			ft_util_format4.c \
 			ft_util_print_c.c \
 			ft_util_print_d.c \
 			ft_util_print_p.c \
@@ -21,16 +24,10 @@ SRCS	=	ft_printf.c \
 			ft_util_char.c \
 			ft_util_str1.c \
 			ft_util_str2.c \
-			ft_util_putnbr.c \
-			ft_format_chk.c \
+			ft_util_putnbr1.c \
+			ft_util_putnbr2.c \
 			ft_util_mem.c \
-			ft_util_printf1.c \
-			ft_util_printf2.c \
-			ft_util_printf3.c \
-			ft_util_printf4.c \
-			ft_util_printf5.c \
-			ft_util_printf6.c \
-			ft_util_printf7.c \
+			ft_util_append.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

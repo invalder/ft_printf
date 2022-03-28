@@ -1,35 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_util_printf5.c                                  :+:      :+:    :+:   */
+/*   ft_util_append.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:22:29 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/21 15:53:27 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/28 23:27:16 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	ft_formatchk(char *ptr)
+char	*ft_append2str(char *buff, char c)
 {
-	ssize_t	len;
+	size_t	buff_len;
+	char	*new_buff;
 
-	len = 1;
-	if (*(ptr + len) == '%')
-		return (2);
-	while (!ft_specchk(ptr + len))
-	{
-		len += ft_flgchk(ptr + len);
-		len += ft_widthchk(ptr + len);
-		len += ft_precisechk(ptr + len);
-	}
-	if (ft_specchk(ptr + len))
-		len += 1;
+	new_buff = NULL;
+	if (buff)
+		buff_len = ft_strlen(buff);
 	else
-		len = -1;
-	return (len);
+		buff_len = 0;
+	new_buff = malloc(sizeof(char) * (buff_len + 2));
+	if (!new_buff)
+		return (NULL);
+	if (buff)
+	{
+		ft_memcpy(new_buff, buff, buff_len);
+		free(buff);
+	}
+	*(new_buff + buff_len) = c;
+	*(new_buff + buff_len + 1) = 0;
+	return (new_buff);
+}
+
+char	*ft_append2str_ul(char *buff, char c, int shift)
+{
+	size_t	buff_len;
+	char	*new_buff;
+
+	if (shift)
+	{
+		if (c >= 'a' && c <= 'z')
+			c -= 32;
+	}
+	new_buff = NULL;
+	if (buff)
+		buff_len = ft_strlen(buff);
+	else
+		buff_len = 0;
+	new_buff = malloc(sizeof(char) * (buff_len + 2));
+	if (!new_buff)
+		return (NULL);
+	if (buff)
+	{
+		ft_memcpy(new_buff, buff, buff_len);
+		free(buff);
+	}
+	*(new_buff + buff_len) = c;
+	*(new_buff + buff_len + 1) = 0;
+	return (new_buff);
 }
 
 char	*ft_appendchr(char *buff, char *ptr, int *len)
