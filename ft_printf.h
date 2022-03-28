@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 23:56:32 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/03/29 00:04:31 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_prefix
 	int		precision;
 	int		is_precision;
 }	t_prefix;
-
 
 char	*ft_freemem(char *ptr);
 char	*ft_mycalloc(size_t size, size_t len, char c);
