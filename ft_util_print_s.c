@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 03:11:46 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 03:12:18 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:45:31 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf)
 
 	buff = va_arg(ap, char *);
 	buff_len = ft_strlen(buff);
-	p_buff = ft_print_s2(buff);
+	p_buff = ft_print_s2(buff, t_pf);
 	buff_len = ft_strlen(p_buff);
+
 	if (t_pf->is_precision && (size_t)t_pf->precision < buff_len)
 		p_buff = ft_mysubstr(p_buff, 0, t_pf->precision);
 	buff_len = ft_strlen(p_buff);
@@ -40,7 +41,7 @@ char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf)
 	return (p_buff);
 }
 
-char	*ft_print_s2(char *buff)
+char	*ft_print_s2(char *buff, t_prefix *t_pf)
 {
 	char	*p_buff;
 
@@ -53,10 +54,12 @@ char	*ft_print_s2(char *buff)
 	}
 	else
 	{
-		p_buff = malloc(sizeof(char) * 7);
+		p_buff = malloc(sizeof(char) * (S_EMPTY_L + 1));
 		if (!p_buff)
 			return (NULL);
-		ft_memcpy(p_buff, "(null)", 7);
+		ft_memcpy(p_buff, S_EMPTY, S_EMPTY_L + 1);
+		if (t_pf->is_precision && t_pf->precision < 6)
+			p_buff = ft_mysubstr(p_buff, 0, 0);
 	}
 	return (p_buff);
 }

@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:53:39 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 23:27:35 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:41:03 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ int	main(void)
 {
 	int		p_len;
 	int		ft_len;
+	// int		a = -4;
 
-	p_len = printf("p %.p\n", 0);
-	ft_len = ft_printf("f %.p\n", 0);
-	printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
+	// while (a < 5) //T34-69
+	// {
+		p_len = printf("p|%-2.4s|", NULL);
+		ft_len = ft_printf("f|%-2.4s|", NULL);
+		printf("\np_len: %d\nft_len: %d\n", p_len, ft_len);
+	// 	a++;
+	// }
 	return (0);
 }

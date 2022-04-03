@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 03:13:52 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 03:24:39 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:12:29 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*ft_append_d_2(char *p_buff, t_prefix *t_pf, size_t len, ssize_t num)
 	neg = 0;
 	if (num < 0)
 		neg = 1;
-	if (t_pf->is_iszero && !t_pf->is_precision)
+	if (t_pf->is_iszero && !t_pf->is_precision && !t_pf->is_left)
 		append_chr = '0';
 	if (neg && t_pf->is_precision)
 		p_buff = ft_mystrjoin("-", p_buff, 0, 1);

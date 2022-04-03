@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 03:23:50 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 03:25:04 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:33:54 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ char	*ft_print_p(va_list ap, int *len, t_prefix *t_pf)
 	}
 	else
 	{
-		p_buff = malloc(sizeof(char) * 4);
+		p_buff = malloc(sizeof(char) * (P_EMPTY_L + 1));
 		if (!p_buff)
 			return (NULL);
-		ft_memcpy(p_buff, "0x0", 4);
+		ft_memcpy(p_buff, P_EMPTY, (P_EMPTY_L + 1));
 	}
 	p_buff = ft_append_p(p_buff, t_pf);
 	if (p_buff)

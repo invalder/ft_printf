@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:26:11 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/29 00:04:31 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:45:43 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 # include <stdarg.h>
 # include <string.h>
 # include <limits.h>
+
+# ifdef __linux__
+#  define IS_LINUX 1
+#  define OS "LINUX"
+#  define S_EMPTY "(null)"
+#  define S_EMPTY_L 6
+#  define P_EMPTY "(nil)"
+#  define P_EMPTY_L 5
+# else
+#  define IS_LINUX 0
+#  define OS "MAC"
+#  define S_EMPTY "(null)"
+#  define S_EMPTY_L 6
+#  define P_EMPTY "0x0"
+#  define P_EMPTY_L 3
+# endif
 
 typedef struct s_prefix
 {
@@ -42,7 +58,7 @@ void	ft_putnstr(char *str, size_t len);
 size_t	ft_strlen(char *str);
 size_t	ft_putstri(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t maxlen);
-size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec);
+size_t	ft_myatoi_format(char *ptr, t_prefix *t_pf, int is_prec);
 char	*ft_mystrjoin(char *s1, char *s2, int free_s1, int free_s2);
 
 void	ft_putchar(char c);
@@ -87,7 +103,7 @@ char	*ft_append2str_ul(char *buff, char c, int shift);
 char	*ft_print_addr(va_list ap);
 char	*ft_print_c(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_s(va_list ap, int *len, t_prefix *t_pf);
-char	*ft_print_s2(char *buff);
+char	*ft_print_s2(char *buff, t_prefix *t_pf);
 char	*ft_print_d(va_list ap, int *len, t_prefix *t_pf);
 char	*ft_print_d_2(ssize_t num, t_prefix *t_pf);
 char	*ft_print_p(va_list ap, int *len, t_prefix *t_pf);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_util_str.c                                      :+:      :+:    :+:   */
+/*   ft_util_str1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 11:50:42 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/26 15:02:01 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 17:55:02 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ size_t	ft_strlen(char *str)
 	return (len);
 }
 
-size_t	ft_myatoi(char *ptr, t_prefix *t_pf, int is_prec)
+size_t	ft_myatoi_format(char *ptr, t_prefix *t_pf, int is_prec)
 {
 	size_t	len;
 	int		num;

@@ -6,7 +6,7 @@
 /*   By: nnakarac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:19:25 by nnakarac          #+#    #+#             */
-/*   Updated: 2022/03/28 23:26:19 by nnakarac         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:27:31 by nnakarac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@ int	ft_is_width(char *ptr, t_prefix *t_pf, va_list ap)
 {
 	if (*ptr == '*')
 	{
-		t_pf->width = va_arg(ap, size_t);
+		t_pf->width = va_arg(ap, ssize_t);
+		if (t_pf->width < 0)
+		{
+			t_pf->width *= -1;
+			t_pf->is_left = 1;
+		}
 		return (1);
 	}
-	else if (*ptr >= '0' && *ptr <= '9')
+	else if (*ptr >= '1' && *ptr <= '9')
 	{
-		return (ft_myatoi(ptr, t_pf, 0));
+		return (ft_myatoi_format(ptr, t_pf, 0));
 	}
 	return (0);
 }
@@ -44,12 +49,14 @@ int	ft_is_precision(char *ptr, t_prefix *t_pf, va_list ap)
 		ptr++;
 		if (*ptr == '*')
 		{
-			t_pf->precision = va_arg(ap, size_t);
+			t_pf->precision = va_arg(ap, ssize_t);
+			if (t_pf->precision < 0)
+				t_pf->is_precision = 0;
 			return (2);
 		}
 		else if (*ptr >= '0' && *ptr <= '9')
 		{
-			return (ft_myatoi(ptr, t_pf, 1) + 1);
+			return (ft_myatoi_format(ptr, t_pf, 1) + 1);
 		}
 		else if (ft_specchk(ptr))
 		{
